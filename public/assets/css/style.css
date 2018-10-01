@@ -1,6 +1,33 @@
+/* 
+***********************************************
+*Author: Baruch Flores                        *
+*Homework 18: Mongo Scraper                   *
+*UCB Extension - Full-Stack Bootcamp          *
+*September 2018                               *
+*********************************************** 
+*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Oswald');
 body {
-    background-image: url("/assets/images/background.jpg");
-    padding-top: 70px;
+    background-image: url("../images/background3.webp");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Oswald', sans-serif;
+    color: black;
+}
+
+.mainJumbo {
+    border-style: double;
+    border-color: coral;
+    border-width: .4rem;
+    font-family: 'Permanent Marker', cursive;
+    background-image: linear-gradient(to left, rgb(175, 65, 65), blue); 
+    color: gold;
+    margin-top: 10rem;
 }
 
 .deleteNote {

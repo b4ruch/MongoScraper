@@ -1,3 +1,13 @@
+/* 
+***********************************************
+*Author: Baruch Flores                        *
+*Homework 18: Mongo Scraper                   *
+*UCB Extension - Full-Stack Bootcamp          *
+*September 2018                               *
+*********************************************** 
+*/
+
+
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
@@ -12,6 +22,10 @@ var Article = require("./models/Article.js");
 // Scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
+
+//Debug
+const util = require('util');
+
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
@@ -89,17 +103,24 @@ app.get("/scrape", function (req, res) {
         // Now, we grab every h2 within an article tag, and do the following:
         $("article").each(function (i, element) {
 
+
             // Save an empty result object
             var result = {};
 
             // Add the title and summary of every link, and save them as properties of the result object
-            result.title = $(this).children("h2").text();
-            result.summary = $(this).children(".summary").text();
-            result.link = $(this).children("h2").children("a").attr("href");
+            result.title = $(element).find("h2").text();
+            console.log(result.title);
+
+            result.link = "https://www.nytimes.com" + $(element).find("a").attr("href");
+            result.summary = $(element).find("p").text();
+            if (!result.summary) {
+                result.summary = "Click link for more info about this news";
+            }
 
             // Using our Article model, create a new entry
             // This effectively passes the result object to the entry (and the title and link)
             var entry = new Article(result);
+            console.log(entry);
 
             // Now, save that entry to the db
             entry.save(function (err, doc) {

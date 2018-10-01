@@ -1,3 +1,13 @@
+/* 
+***********************************************
+*Author: Baruch Flores                        *
+*Homework 18: Mongo Scraper                   *
+*UCB Extension - Full-Stack Bootcamp          *
+*September 2018                               *
+*********************************************** 
+*/
+
+
 //Handle Scrape button
 $("#scrape").on("click", function() {
     $.ajax({
